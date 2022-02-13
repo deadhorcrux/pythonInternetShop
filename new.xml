@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<library>
+	<client code="1" soname="Kovzalov" name="Alexander" patronymic="Al" address="Prompt" phone="937" email="kovz@r" vip="True"/>
+	<client code="2" soname="Done" name="don" patronymic="Dondon" address="Saratov" phone="8908778" email="pofj@ru" vip="False"/>
+	<product code="1" name="Inaz" price="100" value="1"/>
+	<sales code="1" product="1" client="1" date_of_sale="12.10.2001" delivery="10.12.1222" value="1"/>
+</library>

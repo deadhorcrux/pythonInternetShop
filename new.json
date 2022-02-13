@@ -1,0 +1,32 @@
+{
+    "clients": [
+        {
+            "code": 0,
+            "soname": "Kovzalov",
+            "name": "Alexander",
+            "patronymic": "Al",
+            "address": "Peo",
+            "phone": "937",
+            "email": "kov@r",
+            "vip": "True"
+        }
+    ],
+    "products": [
+        {
+            "code": 0,
+            "name": "Inaz",
+            "price": "100",
+            "value": "1"
+        }
+    ],
+    "sales": [
+        {
+            "code": 0,
+            "product": 0,
+            "client": 0,
+            "date_of_sale": "13",
+            "delivery": "10",
+            "value": "1"
+        }
+    ]
+}
