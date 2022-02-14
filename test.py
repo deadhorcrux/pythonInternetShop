@@ -3,14 +3,14 @@ import sys
 sys.path.insert(0, "../library")
 from library import Library
 from dataxml import Dataxml
-from salestable import salesTable
+from clienteditform import clientEditForm as testwidget
 
 app = QApplication(sys.argv)
 lib = Library()
 data = Dataxml(lib, "old.xml")
 data.read()
-tw1 = salesTable(lib)
-tw1.update()
-tw1.show()
+tw = testwidget(lib)
+tw.setCurrentCode(1)
+tw.show()
 
 sys.exit(app.exec_())
