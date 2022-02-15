@@ -1,4 +1,5 @@
-from PyQt5.QtWidgets import QWidget,QGridLayout,QVBoxLayout,QHBoxLayout,QPushButton,QLabel
+from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QGridLayout,QVBoxLayout,QHBoxLayout,QPushButton,QLabel
 from libwidget import libWidget
 
 class editForm(QWidget,libWidget):
@@ -35,7 +36,7 @@ class editForm(QWidget,libWidget):
     def addLeftLayout(self,layout):
         self.__hbox.insertLayout(0,layout)
     def setCurrentCode(self):
-        self.__currentCode=self.__tablewidget.getCurrentCode()
+        self.__currentCode = self.__tablewidget.getCurrentCode()
         self.update()
     def getCurrentCode(self):
         return self.__currentCode
