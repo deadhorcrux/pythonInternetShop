@@ -3,7 +3,8 @@ import sys
 sys.path.insert(0, "../library")
 from library import Library
 from dataxml import Dataxml
-from clienttable import clientTable as testwidget
+#from clienttable import clientTable as testwidget
+from salestable import salesTable as testwidget
 
 app = QApplication(sys.argv)
 lib = Library()
