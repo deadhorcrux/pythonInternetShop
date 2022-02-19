@@ -11,7 +11,7 @@ data = Dataxml(lib, "old.xml")
 data.read()
 tw = testwidget(lib)
 #tw.update()
-tw.setCurrentCode(1)
+tw.getCurrentCode()
 tw.show()
 
 sys.exit(app.exec_())
