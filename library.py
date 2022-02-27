@@ -107,6 +107,8 @@ class  Library:
         return self.__sales.getProduct(code)
     def getSalesClient(self, code):
         return self.__sales.getClient(code)
+    def getSalesClientCodes(self,code):
+        return self.__sales.getClient(code).getClientCodes()
     def getSalesValue(self, code):
         return self.__sales.getValue(code)
     def getSalesDelivery(self, code):
