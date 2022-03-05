@@ -1,61 +1,61 @@
-from PyQt5.QtWidgets import QLineEdit
+from PyQt5.QtWidgets import QVBoxLayout,QLineEdit,QPushButton,QLabel,QSpinBox,QFileDialog
+from PyQt5 import QtCore
+from PyQt5.QtGui import QPixmap
 from editform import editForm
+from dbListWidget import dbListWidget
+from dbComboBox import dbComboBox
+from productcombo import productCombo
+from clientcombo import clientCombo
+from clientlistwidget import clientListWidget
 from salestable import salesTable
 
 class salesEditForm(editForm):
 
     def __init__(self,parent=None,library=None):
+
         editForm.__init__(self,tablewidget=salesTable(library=library),parent=parent,library=library)
 
-        self.__productEdit  = QLineEdit()
-        self.__clientEdit   = QLineEdit()
-        self.__datEdit      = QLineEdit()
-        self.__deliveryEdit = QLineEdit()
-        self.__valueEdit    = QLineEdit()
+        self.__pixlabel = QLabel()
+        self.__nameEdit = QLineEdit()
+        self.__imgEdit = QLineEdit()
+        self.__imgButton = QPushButton(u'find')
+        self.__clientListWidget = clientListWidget(library=library)
+        self.__removeButton = QPushButton(u'delete')
+        self.__clientCombo = clientCombo(library=library)
+        self.__appendButton = QPushButton(u'add')
+        self.__productCombo = productCombo(library=library)
+        self.__dateSpin = QSpinBox()
+        self.__dateSpin.setRange(-3000,QtCore.QDate().currentDate.year())
+        self.__deliverySpin = QSpinBox()
+        self.__deliverySpin.setRange(0,10000)
 
-        self.addLabel(u'Product',0,0)
-        self.addNewWidget(self.__productEdit,0,1)
+        self.addLabel('name',0,0)
+        self.addNewWidget(self.__nameEdit,0,1)
+        self.addLabel(u'image',1,0)
+        self.addNewWidget(self.__imgEdit,1,1)
+        self.addNewWidget(self.__imgButton,1,2)
+        self.addLabel(u'clients',2,0)
+        self.addNewWidget(self.__clientListWidget,2,1)
+        self.addNewWidget(self.__removeButton,2,2)
+        self.addNewWidget(self.__clientCombo,3,1)
+        self.addNewWidget(self.__appendButton,3,2)
+        self.addLabel(u'product',4,0)
+        self.addNewWidget(self.__productCombo,4,1)
+        self.addLabel(u'date',5,0)
+        self.addNewWidget(self.__dateSpin,5,1)
+        self.addLabel(u'delivery',6,0)
+        self.addNewWidget(self.__deliverySpin,6,1)
 
-        self.addLabel(u'Client',1,0)
-        self.addNewWidget(self.__clientEdit,1,1)
-        
-        self.addLabel(u'Date of sale',2,0)
-        self.addNewWidget(self.__datEdit,2,1)
+        self.__pixVBox = QVBoxLayout()
+        self.__pixVBox.addWidget(self.__pixlabel)
+        self.__pixVBox.addStretch(1)
+        self.addLeftLayout(self.__pixVBox)
 
-        self.addLabel(u'Delivery',3,0)
-        self.addNewWidget(self.__deliveryEdit,3,1)
-
-        self.addLabel(u'Value',4,0)
-        self.addNewWidget(self.__valueEdit,4,1)
+        self.__removeButton.clicked.connect(self.removeClient)
+        self.__appendButton.clicked.connect(self.appendClient)
+        self.__imgButton.clicked.connect(self.openImg)
 
         self.setCurrentCode()
 
-    def update(self):
-        if self.getCurrentCode() in self.getLibrary().getSalesCodes():
-            self.__productEdit.setText(self.getLibrary().getSalesProduct(getCurrentCode()).info())
-            self.__clientEdit.setText(self.getLibrary().getSalesClient(getCurrentCode()).info())
-            self.__datEdit.setText(self.getLibrary().getSalesDate_of_sale(getCurrentCode()))
-            self.__deliveryEdit.setText(self.getLibrary().getSalesDelivery(getCurrentCode()))
-            self.__valueEdit.setText(self.getLibrary().getSalesValue(getCurrentCode()))
-    
-    def editClick(self):
-        self.getLibrary().getSalesProduct(self.getCurrentCode(),self.__productEdit.text())
-        self.getLibrary().getSalesClient(self.getCurrentCode(),self.__clientEdit.text())
-        self.getLibrary().getSalesDate_of_sale(self.getCurrentCode(),self.__datEdit.text())
-        self.getLibrary().getSalesDelivery(self.getCurrentCode(),self.__deliveryEdit.text())
-        self.getLibrary().getSalesValue(self.getCurrentCode(),self.__valueEdit.text())
-        self.tableUpdate()
-    
-    def newClick(self):
-        code = self.getLibrary.getSalesNewCode()
-        self.getLibrary().newSales(code)
-        self.getLibrary().setSalesProdcut(code,self.__productEdit.text())
-        self.getLibrary().setSalesClient(code,self.__clientEdit.text())
-        self.getLibrary().setSalesDate_of_sale(code,self.__datEdit.text())
-        self.getLibrary().setSalesDelivery(code,self.__deliveryEdit.text())
-        self.getLibrary().setSalesValue(code,self.__valueEdit.text())
-        self.tableUpdate()
-
-    def delClick(self):
-        self.getLibrary().removeSales(self.getCurrentCode())
-        self.tableUpdate()
+    def openImg(self):
+        pass
