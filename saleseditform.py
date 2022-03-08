@@ -58,4 +58,50 @@ class salesEditForm(editForm):
         self.setCurrentCode()
 
     def openImg(self):
-        pass
+        filename = QFileDialog.getOpenFileName(self,'Open file', './')[0]
+        if filename:
+            self.__imgEdit.setText(filename)
+            self.__pixlabel.setPixmap(QPixmap(filename))
+    
+    def update(self):
+        if self.getCurrentCode() in self.getLibrary().getSalesCodes():
+            self.__nameEdit.setText(self.getLibrary().getSalesProduct(self.getCurrentCode()).getName())
+            self.__imgEdit.setText(self.getLibrary().getSalesClient(self.getCurrentCode()).info())
+            self.__clientCombo.setCurrentRec(self.getCurrentCode())
+            self.__clientListWidget.setCurrentRec(self.getCurrentCode())
+            self.__productCombo.setCurrentRec(self.getCurrentCode())
+            self.__deliverySpin.setValue(self.getLibrary().getSalesDelivery(self.getCurrentCode()))
+            self.__dateSpin.setValue(self.getLibrary().getSalesDate_of_sale(self.getCurrentCode()))
+    
+    def removeProduct(self):
+        code = self.clientListWidget.getCurrentCode()
+        if code:
+            self.__clientCombo.removeItem(self.__clientCombo.currentIndex())
+            self.__clientListWidget.addItem(code,self.getLibrary().findClientByCode(code).info())
+
+    def editClick(self):
+        self.getLibrary().setSalesClient(self.getCurrentCode(), self.__nameEdit.text())
+        self.getLibrary().setSalesProduct(self.getCurrentCode(), self.__imgEdit.text())
+        self.getLibrary().removeClient(self.getCurrentCode())
+        for c in self.__clientListWidget.getCodes():
+            self.getLibrary().setSalesClient(self.getCurrentCode(),self.getLibrary().findClientByCode(c))
+        self.getLibrary().setSalesProduct(self.getCurrentCode(),self.__productCombo.getCurrentCode())
+        self.getLibrary().setSalesDelivery(self.getCurrentCode(),self.__deliverySpin.value())
+        self.getLibrary().setSalesDate_of_sale(self.getCurrentCode(),self.__dateSpin.value())
+        self.tableUpdate()
+
+    def newClick(self):
+        code = self.getLibrary().getSalesNewCode()
+        self.getLibrary().newSales(code)
+        self.getLibrary().setSalesClient(code,self.__nameEdit.text())
+        self.getLibrary().setSalesProduct(code,self.__imgEdit.text())
+        for c in self.__clientListWidget.getCodes():
+            self.getLibrary().setSalesClient(code,self.getLibrary().findClientByCode(c))
+        self.getLibrary().setSalesProduct(code,self.__productCombo.getCurrentCode())
+        self.getLibrary().setSalesDelivery(code,self.__deliverySpin.value())
+        self.getLibrary().setSalesDate_of_sale(code,self.__dateSpin.value())
+        self.tableUpdate()
+
+    def delClick(self):
+        self.getLibrary().removeSales(self.getCurrentCode())
+        self.tableUpdate()
