@@ -3,7 +3,6 @@ from editform import editForm
 from clienttable import clientTable
 
 class clientEditForm(editForm):
-
     def __init__(self,parent=None,library=None):
         editForm.__init__(self,tablewidget=clientTable(library=library),parent=parent,library=library)
 
@@ -17,7 +16,7 @@ class clientEditForm(editForm):
 
         self.addLabel(u'Name',0,0)
         self.addNewWidget(self.__nameEdit,0,1)
-       
+        
         self.addLabel(u'Soname',1,0)
         self.addNewWidget(self.__sonameEdit,1,1)
         
@@ -29,7 +28,7 @@ class clientEditForm(editForm):
         
         self.addLabel(u'Phone',4,0)
         self.addNewWidget(self.__phoneEdit,4,1)
-       
+        
         self.addLabel('Email',5,0)
         self.addNewWidget(self.__emailEdit,5,1)
         

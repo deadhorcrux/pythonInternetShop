@@ -7,6 +7,7 @@ class editForm(QWidget,libWidget):
         QWidget.__init__(self,parent=parent)
         libWidget.__init__(self,library)
         self.__tablewidget  = tablewidget
+        
         self.__mainvbox     = QVBoxLayout()
         self.__mainvbox.addWidget(self.__tablewidget)
         self.__grid         = QGridLayout()
@@ -30,6 +31,7 @@ class editForm(QWidget,libWidget):
         self.__editButton.clicked.connect(self.editClick)
         self.__delButton.clicked.connect(self.delClick)
         self.__tablewidget.currentCellChanged.connect(self.tableClick)
+        
     def getGreed(self):
         return self.__grid
     def addLabel(self,text,x,y):
