@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QTableWidgetItem
 from dbtablewidget import dbTableWidget
 
-class clientTable(dbTableWidget):
+class ClientTable(dbTableWidget):
     def __init__(self,library,parent=None):
         dbTableWidget.__init__(self,library=library,header=[u'soname',u'name',u'patronymic',u'address',u'phone',u'email',u'vip'],parent=parent)
     def update(self):

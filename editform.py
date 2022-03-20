@@ -1,11 +1,12 @@
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtWidgets import QGridLayout,QVBoxLayout,QHBoxLayout,QPushButton,QLabel
-from libwidget import libWidget
+from libwidget import LibWidget
 
-class editForm(QWidget,libWidget):
+class EditForm(QWidget,LibWidget):
+    
     def __init__(self,tablewidget=None,parent=None,library=None):
         QWidget.__init__(self,parent=parent)
-        libWidget.__init__(self,library)
+        LibWidget.__init__(self,library)
         self.__tablewidget  = tablewidget
         
         self.__mainvbox     = QVBoxLayout()

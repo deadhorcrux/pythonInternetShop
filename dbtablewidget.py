@@ -1,11 +1,11 @@
 from PyQt5.QtWidgets import QTableWidget
 from rowCode import rowCode
-from libwidget import libWidget
+from libwidget import LibWidget
 
-class dbTableWidget(QTableWidget, libWidget):
+class dbTableWidget(QTableWidget, LibWidget):
     def __init__(self,library,parent=None,header=[]):
         QTableWidget.__init__(self)
-        libWidget.__init__(self,library)
+        LibWidget.__init__(self,library)
         self.__rowCode=rowCode()
         self.setHeader(header)
         self.update()
