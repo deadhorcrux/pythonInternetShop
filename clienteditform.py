@@ -54,7 +54,7 @@ class ClientEditForm(EditForm):
         self.getLibrary().setClientAddress(self.getCurrentCode(),self.__addressEdit.text())
         self.getLibrary().setClientPhone(self.getCurrentCode(),self.__phoneEdit.text())
         self.getLibrary().setClientEmail(self.getCurrentCode(),self.__emailEdit.text())
-        self.getLibrary().setClientVIP(self.getCurrentCode(),self.__vipEdit.text())
+        self.getLibrary().setClientVip(self.getCurrentCode(),self.__vipEdit.text())
         self.tableUpdate()
 
     def newClick(self):
@@ -62,11 +62,11 @@ class ClientEditForm(EditForm):
         self.getLibrary().newClient(code)
         self.getLibrary().setClientName(code,self.__nameEdit.text())
         self.getLibrary().setClientSoname(code,self.__sonameEdit.text())
-        self.getLibrary().setClientPatronymic(code,self.__patronymicEdit().text())
-        self.getLibrary().setClientAddress(code,self.__addressEdit().text())
-        self.getLibrary().setClientPhone(code,self.__phoneEdit().text())
-        self.getLibrary().setClientEmail(code,self.__emailEdit().text())
-        self.getLibrary().setClientVIP(code,self.__vipEdit().text())
+        self.getLibrary().setClientPatronymic(code,self.__patronymicEdit.text())
+        self.getLibrary().setClientAddress(code,self.__addressEdit.text())
+        self.getLibrary().setClientPhone(code,self.__phoneEdit.text())
+        self.getLibrary().setClientEmail(code,self.__emailEdit.text())
+        self.getLibrary().setClientVip(code,self.__vipEdit.text())
         self.tableUpdate()
 
     def delClick(self):

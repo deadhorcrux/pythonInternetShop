@@ -37,7 +37,7 @@ class EditForm(QWidget,LibWidget):
         return self.__grid
     def addLabel(self,text,x,y):
         self.__grid.addWidget(QLabel(text),x,y)
-    def addNewWdidget(self,widget,x,y):
+    def addNewWidget(self,widget,x,y):
         self.__grid.addWidget(widget,x,y)
     def addLeftLayout(self,layout):
         self.__hbox.insertLayout(0,layout)

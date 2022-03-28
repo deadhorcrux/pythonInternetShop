@@ -1,11 +1,11 @@
 from PyQt5.QtWidgets import QLineEdit
-from editform import editForm
+from editform import EditForm
 from producttable import productTable
 
-class productEditForm(editForm):
+class productEditForm(EditForm):
 
     def __init__(self,parent=None,library=None):
-        editForm.__init__(self,tablewidget=productTable(library=library),parent=parent,library=library)
+        EditForm.__init__(self,tablewidget=productTable(library=library),parent=parent,library=library)
 
         self.__nameEdit  = QLineEdit()
         self.__priceEdit = QLineEdit()
@@ -22,7 +22,7 @@ class productEditForm(editForm):
 
         self.setCurrentCode()
     def update(self):
-        if self.getCurrentCode() in self.getLibrary().getProductCodes():
+        if self.getCurrentCode() in self.getLibrary().getProductsCodes():
             self.__nameEdit.setText(self.getLibrary().getProductName(self.getCurrentCode()))
             self.__priceEdit.setText(self.getLibrary().getProductPrice(self.getCurrentCode()))
             self.__valueEdit.setText(self.getLibrary().getProductPrice(self.getCurrentCode()))
