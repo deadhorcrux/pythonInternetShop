@@ -1,11 +1,11 @@
 from PyQt5.QtWidgets import QComboBox
 from rowCode import rowCode
-from libwidget import libWidget
+from libwidget import LibWidget
 
-class dbComboBox(QComboBox,libWidget):
+class dbComboBox(QComboBox,LibWidget):
     def __init__(self,parent=None,library=None):
         QComboBox.__init__(self,parent)
-        libWidget.__init__(self,library)
+        LibWidget.__init__(self,library)
         self.__rowCode = rowCode()
         self.setSizeAdjustPolicy(self.AdjustToContents)
 

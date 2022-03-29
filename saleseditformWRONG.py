@@ -1,11 +1,11 @@
 from PyQt5.QtWidgets import QLineEdit
-from editform import editForm
+from editform import EditForm
 from salestable import salesTable
 
-class salesEditForm(editForm):
+class salesEditForm(EditForm):
 
     def __init__(self,parent=None,library=None):
-        editForm.__init__(self,tablewidget=salesTable(library=library),parent=parent,library=library)
+        EditForm.__init__(self,tablewidget=salesTable(library=library),parent=parent,library=library)
 
         self.__productEdit  = QLineEdit()
         self.__clientEdit   = QLineEdit()
@@ -18,7 +18,7 @@ class salesEditForm(editForm):
 
         self.addLabel(u'Client',1,0)
         self.addNewWidget(self.__clientEdit,1,1)
-        
+
         self.addLabel(u'Date of sale',2,0)
         self.addNewWidget(self.__datEdit,2,1)
 
@@ -37,7 +37,7 @@ class salesEditForm(editForm):
             self.__datEdit.setText(self.getLibrary().getSalesDate_of_sale(getCurrentCode()))
             self.__deliveryEdit.setText(self.getLibrary().getSalesDelivery(getCurrentCode()))
             self.__valueEdit.setText(self.getLibrary().getSalesValue(getCurrentCode()))
-    
+
     def editClick(self):
         self.getLibrary().getSalesProduct(self.getCurrentCode(),self.__productEdit.text())
         self.getLibrary().getSalesClient(self.getCurrentCode(),self.__clientEdit.text())
@@ -45,7 +45,7 @@ class salesEditForm(editForm):
         self.getLibrary().getSalesDelivery(self.getCurrentCode(),self.__deliveryEdit.text())
         self.getLibrary().getSalesValue(self.getCurrentCode(),self.__valueEdit.text())
         self.tableUpdate()
-    
+
     def newClick(self):
         code = self.getLibrary.getSalesNewCode()
         self.getLibrary().newSales(code)

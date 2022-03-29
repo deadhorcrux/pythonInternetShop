@@ -4,9 +4,9 @@ sys.path.insert(0, "../library")
 from library import Library
 from dataxml import Dataxml
 #from clienteditform import ClientEditForm as testwidget
-from producteditform import productEditForm as testwidget
+#from producteditform import productEditForm as testwidget
 #from salestable import salesTable as testwidget
-#from saleseditform import salesEditForm as testwidget
+from saleseditform import salesEditForm as testwidget
 #from clienttable import ClientTable as testwidget
 
 app = QApplication(sys.argv)
