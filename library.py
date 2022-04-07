@@ -115,7 +115,7 @@ class  Library:
         return self.__sales.getDelivery(code)
     def getSalesInfo(self, code):
         return self.__sales.findBycode(code).info()
-    def setSalseDate_of_sale(self, code, date_of_sale):
+    def setSalesDate_of_sale(self, code, date_of_sale):
         self.__sales.findBycode(code).setDate_of_sale(date_of_sale)
     def setSalesDelivery(self, code, delivery):
         self.__sales.findBycode(code).setDelivery(delivery)
