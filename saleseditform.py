@@ -69,6 +69,7 @@ class salesEditForm(EditForm):
             print(self.getLibrary().findClientBycode(c).info())
         for c in self.__productListWidget.getCodes():
             print(self.getLibrary().findProductBycode(c).info())
+            
     def newClick(self):
         code = self.getLibrary().getSalesNewCode()
         print(code)

@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QLineEdit
 from editform import EditForm
 from clienttable import ClientTable
 
-class ClientEditForm(EditForm):
+class clientEditForm(EditForm):
     def __init__(self,parent=None,library=None):
         EditForm.__init__(self,tablewidget=ClientTable(library=library),parent=parent,library=library)
 
