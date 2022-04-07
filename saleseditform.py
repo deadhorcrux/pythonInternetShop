@@ -43,32 +43,40 @@ class salesEditForm(EditForm):
             self.__value.setText(self.getLibrary().getSalesValue(self.getCurrentCode()))
 
     
-    def removeClient(self):
-        code = self.clientListWidget.getCurrentCode()
-        if code:
-            self.__clientListWidget.removeSelected()
-            self.__clientCombo.addItem(code, self.getLibrary().findClientByCode(code).info())
+    # def removeClient(self):
+    #     code = self.clientListWidget.getCurrentCode()
+    #     if code:
+    #         self.__clientListWidget.removeSelected()
+    #         self.__clientCombo.addItem(code, self.getLibrary().findClientByCode(code).info())
 
-    def appendClient(self):
-        code = self.__clientCombo.getCurrentCode()
-        if code:
-            self.__clientCombo.removeItem(self.__clientCombo.currentIndex())
-            self.__clientListWidget.addItem(code,self.getLibrary().findClientByCode(code).info())
+    # def appendClient(self):
+    #     code = self.__clientCombo.getCurrentCode()
+    #     if code:
+    #         self.__clientCombo.removeItem(self.__clientCombo.currentIndex())
+    #         self.__clientListWidget.addItem(code,self.getLibrary().findClientByCode(code).info())
 
     def editClick(self):
-        #self.getLibrary().setSalesClient(self.getCurrentCode(),self.__client)
-        #self.getLibrary().setSalesProduct(self.getCurrentCode(),self.__product)
+        for c in self.__productListWidget.getCodes():
+            self.getLibrary().setSalesProduct(self.getCurrentCode(), self.getLibrary().findProductBycode(c))
         for c in self.__clientListWidget.getCodes():
             self.getLibrary().setSalesClient(self.getCurrentCode(),self.getLibrary().findClientBycode(c))
         self.getLibrary().setSalesDate_of_sale(self.getCurrentCode(),self.__date.text())
         self.getLibrary().setSalesValue(self.getCurrentCode(),self.__value.text())
         self.tableUpdate()
 
+    def debug(self):
+        for c in self.__clientListWidget.getCodes():
+            print(self.getLibrary().findClientBycode(c).info())
+        for c in self.__productListWidget.getCodes():
+            print(self.getLibrary().findProductBycode(c).info())
     def newClick(self):
         code = self.getLibrary().getSalesNewCode()
+        print(code)
         self.getLibrary().newSales(code)
-        self.getLibrary().setSalesClient(code,newClient(code))
-        self.getLibrary().setSalesProduct(code,newProduct(code))
+        for c in self.__clientListWidget.getCodes():
+            self.getLibrary().setSalesClient(code, self.getLibrary().findClientBycode(c))
+        for c in self.__productListWidget.getCodes():
+            self.getLibrary().setSalesProduct(code, self.getLibrary().findProductBycode(c))
         self.getLibrary().setSalesDate_of_sale(code,self.__date.text())
         self.getLibrary().setSalesValue(code,self.__value.text())
         self.tableUpdate()

@@ -17,5 +17,6 @@ tw = testwidget(library=lib)
 #tw.update() #for table
 #tw.setCurrentCode(1)# was getCurrentCode() it's for someEditForm
 tw.show()
+tw.debug()
 
 sys.exit(app.exec_())
