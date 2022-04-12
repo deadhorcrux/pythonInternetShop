@@ -22,17 +22,17 @@ class Sales:
     def getCode(self):
         return self.__code
     def setProduct(self, product):
-        if isinstance(product, Product):
-            self.__product = product
-        else:
-            raise Exception("product must be type Product")
+        #if isinstance(product, Product):
+        self.__product = product
+        #else:
+         #   raise Exception("product must be type Product")
     def getProduct(self):
         return self.__product
     def setClient(self, client):
-        if isinstance(client, Client):
-            self.__client = client
-        else:
-            raise Exception("client must be type Client")
+        #if isinstance(client, Client):
+        self.__client = client
+        #else:
+         #   raise Exception("client must be type Client")
     def getClient(self):
         return self.__client
     def setDate_of_sale(self, date_of_sale):

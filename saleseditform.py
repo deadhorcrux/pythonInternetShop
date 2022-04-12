@@ -67,17 +67,20 @@ class salesEditForm(EditForm):
     def debug(self):
         for c in self.__clientListWidget.getCodes():
             print(self.getLibrary().findClientBycode(c).info())
+            print(type(self.getLibrary().getSalesClient(c)))
         for c in self.__productListWidget.getCodes():
+            print(type(self.getLibrary().getSalesProduct(c)))
             print(self.getLibrary().findProductBycode(c).info())
+        
             
     def newClick(self):
         code = self.getLibrary().getSalesNewCode()
         print(code)
         self.getLibrary().newSales(code)
         for c in self.__clientListWidget.getCodes():
-            self.getLibrary().setSalesClient(code, self.getLibrary().findClientBycode(c))
+            self.getLibrary().setSalesClient(code, self.getLibrary().getSalesClient(c))
         for c in self.__productListWidget.getCodes():
-            self.getLibrary().setSalesProduct(code, self.getLibrary().findProductBycode(c))
+            self.getLibrary().setSalesProduct(code, self.getLibrary().getSalesProduct(c))
         self.getLibrary().setSalesDate_of_sale(code,self.__date.text())
         self.getLibrary().setSalesValue(code,self.__value.text())
         self.tableUpdate()
