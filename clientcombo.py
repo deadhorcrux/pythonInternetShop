@@ -3,6 +3,7 @@ from dbComboBox import dbComboBox
 class clientCombo(dbComboBox):
     def update(self):
         self.clear()
-        for a in self.getLibrary().getClientCodes():
-            if not(a in self.getLibrary().getClientCodes(self.getCurrentRec())):
-                self.addItem(a,self.getLibrary().findClientByCode(a).info())
+        for p in self.getLibrary().getClientCodes():
+            self.addItem(p,self.getLibrary().getClientName(p))
+        self.setCurrentCode(self.getLibrary().getSalesClient(self.getCurrentRec()).getCode())
+

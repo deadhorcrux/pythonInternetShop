@@ -93,7 +93,7 @@ class  Library:
     def setProductValue(self, code, value):
         self.__products.findBycode(code).setValue(value)
 
-    def newSales(self, code=0, product=None, client=None, date_of_sale='', delivery='', value=''):
+    def newSales(self, code=0, product = None, client = None, date_of_sale='', delivery='', value=''):
         self.__sales.newRec(code, product, client, date_of_sale, delivery, value)
     def findSalesBycode(self, code):
         return self.__sales.findBycode(code)

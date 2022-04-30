@@ -1,6 +1,6 @@
+from libwidget import LibWidget
 from PyQt5.QtWidgets import QComboBox
 from rowCode import rowCode
-from libwidget import LibWidget
 
 class dbComboBox(QComboBox,LibWidget):
     def __init__(self,parent=None,library=None):
@@ -14,7 +14,7 @@ class dbComboBox(QComboBox,LibWidget):
         QComboBox.clear(self)
 
     def addItem(self,code,text):
-        self.__rowCode.appendRowCode(self.count,code)
+        self.__rowCode.appendRowCode(self.count(),code)
         QComboBox.addItem(self,text)
 
     def removeItem(self,index):
@@ -24,6 +24,7 @@ class dbComboBox(QComboBox,LibWidget):
     def getCurrentCode(self):
         return self.__rowCode.getCode(self.currentIndex())
     def setCurrentCode(self,code):
+        #print(self.__rowCode.getRow(code),code)
         if self.__rowCode.getRow(code):
             self.setCurrentIndex(self.__rowCode.getRow(code))
     def setCurrentRec(self,value):

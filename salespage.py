@@ -3,10 +3,11 @@ class salespage:
         self.__lib = library
     def index(self):
         s = '<a href=..>%s</a>/<a href = addform>%s</a>'%(u'back',u'add')
-        s+='<table><th bgcolor = gray></th><th bgcolor = gray>%s</th><th bgcolor = gray>%s</th><th bgcolor = gray>%s</th>'
+        s+='<table><th bgcolor = gray></th><th bgcolor = gray>%s</th><th bgcolor = gray>%s</th><th bgcolor = gray>%s</th><th bgcolor = gray>%s</th><th bgcolor = gray>%s</th>'%('product','client','date_of_sale','delivery','value')
         r = 1
         bg = ''
-        for c in self.__lib.getClientCodes():
+        print(self.__lib.getSalesCodes())
+        for c in self.__lib.getSalesCodes():
             s+='<tr%s><td>%d</td>'%(bg,r)
             s+='<td>%s</td>'%self.__lib.getSalesProduct(c).getName()
             s+='<td>%s</td>'%self.__lib.getSalesClient(c).getSoname()
@@ -36,7 +37,7 @@ class salespage:
             return s
     def productCombo(self, code = 0):
         s = '<select name = product>'
-        for c in self.__lib.getProductCodes():
+        for c in self.__lib.getProductsCodes():
             #if not(c in self.__lib.get
             s+='<option value = %s>%s<\option>'%(str(c),self.__lib.findProductBycode(c).info())
         s+='</select>'
@@ -91,7 +92,7 @@ class salespage:
               <table>
               <tr><td>%s</td><td><input type = sumbit value = %s></td>
            '''%(u'clients',str(code),self.clientCombo(int(code)),u'add')
-        s+= self.clientList(int(code))
+      #  s+= self.clientList(int(code))
         return s
     editform.exposed = True
 
