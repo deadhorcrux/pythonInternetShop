@@ -33,15 +33,19 @@ class salespage:
             else:
                 v = ''
             s+='<option%s value = %s>%s</option>'%(v,str(c),self.__lib.getClientName(c))
-            s+='</select>'
-            return s
-    def productCombo(self, code = 0):
-        s = '<select name = product>'
-        for c in self.__lib.getProductsCodes():
-            #if not(c in self.__lib.get
-            s+='<option value = %s>%s<\option>'%(str(c),self.__lib.findProductBycode(c).info())
         s+='</select>'
         return s
+    def productCombo(self, code = 0):
+        s = '<select anme = product'
+        for c in self.__lib.getProductCodes():
+            if (code in self.__lib.getSalesCodes()) and (c == self.__lib.getProdcutCode(code)):
+                v =' selected'
+            else:
+                v = ''
+            s+='<option%s value = %s>%s</option>'%(v,str(c),self.__lib.getProductName(c))
+        s+='</select>'
+        return s
+
 
     def salesform(self, code = 0, add = True):
         client,product,date,delivery,val = 0,0,'','',''
@@ -64,14 +68,14 @@ class salespage:
                <tr><td>%s</td><td><input type = text name = delivery value = '%s'></td></tr>
                <tr><td>%s</td><td><input type = text name = val value = '%s'></td></tr>
             <table>
-            </form>'''%(a,u'client',self.clientCombo(client),u'product',self.productCombo(product),u'date',u'delivery',u'value')
+            </form>'''%(a,u'client',self.clientCombo(client),u'product',self.productCombo(product),u'date',str(date),u'delivery',str(delivery),u'val',str(val))
         return s
 
     def addaction(self,client,product,date,delivery,val):
         code = self.__lib.getSalesNewCode()
         self.__lib.newSales(code)
-        self.__lib.setSalesClient(code,client)
-        self.__lib.setSalesProduct(code,product)
+        self.__lib.setSalesClient(code,int(client))
+        self.__lib.setSalesProduct(code,int(product))
         self.__lib.setSalesDate_of_sale(code,date)
         self.__lib.setSalesDelivery(code,delivery)
         self.__lib.setSalesValue(code,val)
@@ -84,24 +88,25 @@ class salespage:
         return s
     addform.exposed = True
 
-    def editform(self,code):
-        s = u'edit sales<br>'
-        s+= self.salesform(int(code), False)
-        s+='''%s
-              <form action = addclient?code = %s method=post>
-              <table>
-              <tr><td>%s</td><td><input type = sumbit value = %s></td>
-           '''%(u'clients',str(code),self.clientCombo(int(code)),u'add')
-      #  s+= self.clientList(int(code))
-        return s
-    editform.exposed = True
+    # def editform(self,code):
+    #     s = u'edit sales<br>'
+    #     s+= self.salesform(int(code), False)
+    #     s+='''%s
+    #           <form action = addclient?code = %s method=post>
+    #           <table>
+    #           <tr><td>%s</td><td><input type = sumbit value = %s></td>
+    #        '''%(u'clients',str(code),self.clientCombo(int(code)),u'add')
+    #   #  s+= self.clientList(int(code))
+    #     return s
+    # editform.exposed = True
 
     def editaction(self,code,client,product,date,delivery,val):
-        self.__lib.setSalesClient(int(code),client)
-        self.__lib.setSalesProduct(int(code),product)
+        self.__lib.setSalesClient(int(code),int(client))
+        self.__lib.setSalesProduct(int(code),int(product))
         self.__lib.setSalesDate_of_sale(int(code),date)
         self.__lib.setSalesDelivery(int(code),delivery)
         self.__lib.setSalesValue(int(code),val)
+        return 'sales edited<br><a href = index>back</a>'
 
     editaction.exposed = True
 

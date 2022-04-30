@@ -10,7 +10,8 @@ from salespage import salespage
 class start:
     def __init__(self):
         self.__lib = Library()
-        self.__dataxml = Dataxml(self.__lib,'old.xml')
+        self.__dataxml = Dataxml(self.__lib, "old.xml")
+        self.__dataxml.read()
         self.clientpage = clientpage(self.__lib)
         self.productpage = productpage(self.__lib)
         self.salespage = salespage(self.__lib)
