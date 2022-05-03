@@ -25,10 +25,13 @@ class start:
     index.exposed = True
 
 root = start()
+
 cherrypy.config.update({
     'log.screen': True,
     })
+
 cherrypy.tree.mount(root)
+
 if __name__ == "__main__":
     cherrypy.engine.start()
     cherrypy.engine.block()
