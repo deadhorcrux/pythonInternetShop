@@ -103,17 +103,17 @@ class salespage:
     def editform(self,code):
         s = u'edit sales<br>'
         s+= self.salesform(int(code), False)
-        s+='''%s
-            <form action = addclient?code = %s method=post>
-            <table>
-            <tr><td>%s</td><td><input type = sumbit value = %s></td>
-        '''%(u'clients',str(code),self.clientCombo(int(code)),u'add')
+        # s+='''%s
+        #     <form action = addclient?code = %s method=post>
+        #     <table>
+        #     <tr><td>%s</td><td><input type = sumbit value = %s></td>
+        # '''%(u'clients',str(code),self.clientCombo(int(code)),u'add')
 
-        s+='''%s
-            <form action = addproduct?code = %s method=post>
-            <table>
-            <tr><td>%s</td><td><input type = sumbit value = %s></td>
-        '''%(u'products',str(code),self.productCombo(int(code)),u'add')
+        # s+='''%s
+        #     <form action = addproduct?code = %s method=post>
+        #     <table>
+        #     <tr><td>%s</td><td><input type = sumbit value = %s></td>
+        # '''%(u'products',str(code),self.productCombo(int(code)),u'add')
 
        #  s+= self.clientList(int(code))
         return s
