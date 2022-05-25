@@ -9,8 +9,8 @@ class salespage:
         print(self.__lib.getSalesCodes())
         for c in self.__lib.getSalesCodes():
             s+='<tr%s><td>%d</td>'%(bg,r)
-            s+='<td>%s</td>'%self.__lib.getSalesProduct(c).getName()
-            s+='<td>%s</td>'%self.__lib.getSalesClient(c).getSoname()
+            s+='<td>%s</td>'%self.__lib.getSalesClientSoname(c)
+            s+='<td>%s</td>'% self.__lib.getSalesProductName(c)
             s+='<td>%s</td>'%self.__lib.getSalesDate_of_sale(c)
             s+='<td>%s</td>'%self.__lib.getSalesDelivery(c)
             s+='<td>%s</td>'%self.__lib.getSalesValue(c)
@@ -64,10 +64,10 @@ class salespage:
         if add:
             a = 'addaction'
         else:
-            a = 'editaction?code = %s'%code
+            a = 'editaction?code=%s'%code
         if code in self.__lib.getSalesCodes():
-            client = self.__lib.getSalesClient(code).getCode()
-            product = self.__lib.getSalesProduct(code).getCode()
+            client = self.__lib.getSalesClientCode(code)
+            product = self.__lib.getSalesProductCode(code)
             date = self.__lib.getSalesDate_of_sale(code)
             delivery = self.__lib.getSalesDelivery(code)
             val  = self.__lib.getSalesValue(code)
@@ -91,7 +91,7 @@ class salespage:
         self.__lib.setSalesDate_of_sale(code,date)
         self.__lib.setSalesDelivery(code,delivery)
         self.__lib.setSalesValue(code,val)
-        return 'sales added<br><a href = index>back</a>'
+        return 'sales added<br><a href=index>back</a>'
     addaction.exposed = True
 
     def addform(self):
@@ -100,9 +100,10 @@ class salespage:
         return s
     addform.exposed = True
 
-    def editform(self,code):
+    def editform(self, code):
         s = u'edit sales<br>'
         s+= self.salesform(int(code), False)
+        print(s)
         # s+='''%s
         #     <form action = addclient?code = %s method=post>
         #     <table>
@@ -126,12 +127,12 @@ class salespage:
         self.__lib.setSalesDate_of_sale(int(code),date)
         self.__lib.setSalesDelivery(int(code),delivery)
         self.__lib.setSalesValue(int(code),val)
-        return 'sales edited<br><a href = index>back</a>'
+        return 'sales edited<br><a href=index>back</a>'
 
     editaction.exposed = True
 
     def delr(self,code):
         self.__lib.removeSales(int(code))
-        return 'sales deleted<br><a href = index>back</a>'
+        return 'sales deleted<br><a href=index>back</a>'
 
     delr.exposed = True

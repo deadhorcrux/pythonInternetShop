@@ -105,6 +105,14 @@ class  Library:
         return self.__sales.getDate_of_sale(code)
     def getSalesProduct(self, code):
         return self.__sales.getProduct(code)
+    def getSalesProductName(self, code): 
+        return self.__products.findBycode(code).getName()
+    def getSalesClientCode(self,code):
+        return self.__clients.findBycode(code).getCode()
+    def getSalesProductCode(self,code):
+        return self.__products.findBycode(code).getCode()
+    def getSalesClientSoname(self,code):
+        return self.__clients.findBycode(code).getSoname()
     def getSalesClient(self, code):
         return self.__sales.getClient(code)
     def getSalesClientCodes(self,code):
