@@ -106,13 +106,13 @@ class  Library:
     def getSalesProduct(self, code):
         return self.__sales.getProduct(code)
     def getSalesProductName(self, code): 
-        return self.__products.findBycode(code).getName()
+        return self.__sales.findBycode(code).getProduct().getName()
     def getSalesClientCode(self,code):
         return self.__clients.findBycode(code).getCode()
     def getSalesProductCode(self,code):
         return self.__products.findBycode(code).getCode()
     def getSalesClientSoname(self,code):
-        return self.__clients.findBycode(code).getSoname()
+        return self.__sales.findBycode(code).getClient().getSoname()
     def getSalesClient(self, code):
         return self.__sales.getClient(code)
     def getSalesClientCodes(self,code):

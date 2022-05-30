@@ -6,6 +6,7 @@ class generalList:
     def findBycode(self, code):
         for l in self.__list:
             if l.getCode() == code:
+                print("!!!!!!!!!!!!!!!!!", l)
                 return l
         raise Exception("object with code %s not found" % code)
     

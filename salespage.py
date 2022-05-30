@@ -26,24 +26,24 @@ class salespage:
     index.exposed = True
 
     def clientCombo(self, code = 0):
-        s = '<select name = client>'
+        s = '<select name=client>'
         for c in self.__lib.getClientCodes():
             if (code in self.__lib.getSalesCodes()) and (c == self.__lib.findClientBycode(code).getCode()):
                 v = ' selected'
             else:
                 v = ''
-            s+='<option%s value = %s>%s</option>'%(v,str(c),self.__lib.getClientName(c))
+            s+='<option%s value=%s>%s</option>'%(v,str(c),self.__lib.getClientName(c))
         s+='</select>'
         return s
 
     def productCombo(self, code = 0):
-        s = '<select name = product>'
+        s = '<select name=product>'
         for c in self.__lib.getProductsCodes():
             if (code in self.__lib.getSalesCodes()) and (c == self.__lib.findProductBycode(code).getCode()):
                 v = ' selected'
             else:
                 v = ''
-            s+='<option%s value = %s>%s</option>'%(v,str(c),self.__lib.getProductName(c))
+            s+='<option%s value=%s>%s</option>'%(v,str(c),self.__lib.getProductName(c))
         s+='</select>'
         return s
 
@@ -75,7 +75,7 @@ class salespage:
              <table>
                <tr><td>%s</td><td>%s</td></tr>
                <tr><td>%s</td><td>%s</td></tr>
-               <tr><td>%s</td><td><input type = text name = date value = '%s'></td></tr>
+               <tr><td>%s</td><td><input type=text name = date value = '%s'></td></tr>
                <tr><td>%s</td><td><input type = text name = delivery value = '%s'></td></tr>
                <tr><td>%s</td><td><input type = text name = val value = '%s'></td></tr>
                <tr><td><input type=submit></td><td></td></tr>
@@ -122,8 +122,10 @@ class salespage:
 
     def editaction(self,code,client,product,date,delivery,val):
         print("its a code %s"%code)
-        self.__lib.setSalesClient(int(code),client)
-        self.__lib.setSalesProduct(int(code),product)
+        print("====================================>", int(client))
+        self.__lib.setSalesClient(int(code),self.__lib.findClientBycode(int(client)))
+
+        self.__lib.setSalesProduct(int(code),self.__lib.findProductBycode(int(product)))
         self.__lib.setSalesDate_of_sale(int(code),date)
         self.__lib.setSalesDelivery(int(code),delivery)
         self.__lib.setSalesValue(int(code),val)

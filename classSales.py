@@ -30,6 +30,7 @@ class Sales:
         return self.__product
     def setClient(self, client):
         #if isinstance(client, Client):
+        print("setclient ========>", client.getCode())
         self.__client = client
         #else:
          #   raise Exception("client must be type Client")
